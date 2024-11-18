@@ -21,6 +21,17 @@ document // makes it so you can press enter to submit as opposed to just being a
         }
     });
 
+document.getElementById("switcher").onselect = async function (event) {
+    switch (event.target.value) {
+        case "epoxy":
+            await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+            break;
+        case "bare":
+            await connection.setTransport("/baremod/index.mjs", [bareUrl]);
+            break;
+    }
+}
+
 document.getElementById("searchButton").onclick = async function (event) {
     event.preventDefault();
 
