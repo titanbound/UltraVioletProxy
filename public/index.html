@@ -1,47 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="/uv/uv.bundle.js"></script>
-<script src="/uv/uv.config.js"></script>
-<script src="/baremux/index.js"></script>
-
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/uv/sw.js");
-    });
-}
-</script>
-        <script src="/uv/uv.bundle.js"></script>
-        <script src="/uv/uv.config.js"></script>
-        <script src="/baremux/index.js"></script>
-
-        <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", async () => {
-                await navigator.serviceWorker.register("/uv/sw.js");
-            });
-        }
-        </script>
-<iframe id="iframeWindow" class="iframeWindow"></iframe>
-        <link rel="stylesheet" href="example.css">
-    </head>
-    <body>
-        <input type="text" id="urlInput" placeholder="Enter URL here">
-        <button id="searchButton">Search Text</button>
-        <select id="switcher">
-            <option value="">--Please Choose an Option--</option>
-            <option value="epoxy">Epoxy</option>
-            <option value="bare">Bare</option>
-        </select>
-	    
-        <select id="switcher">
-    <option value="">--Please Choose an Option--</option>
-    <option value="epoxy">Epoxy</option>
-    <option value="bare">Bare</option>
-</select>
-
-        <iframe id="iframeWindow" class="iframeWindow"></iframe>
-    </body>
-    <script src="example.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>UltraViolet Proxy - GeForce NOW</title>
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
+    <script src="/baremux/index.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/uv/sw.js");
+        });
+      }
+      // On load, set the iframe to play.geforcenow.com via the proxy
+      window.onload = () => {
+        const iframe = document.getElementById("iframeWindow");
+        const url = "https://play.geforcenow.com/";
+        iframe.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+      };
+    </script>
+    <link rel="stylesheet" href="example.css">
+    <style>
+      body, html { height: 100%; margin: 0; padding: 0; }
+      .iframeWindow { width: 100vw; height: 100vh; border: none; }
+    </style>
+  </head>
+  <body>
+    <iframe id="iframeWindow" class="iframeWindow" sandbox="allow-forms allow-scripts allow-same-origin allow-popups"></iframe>
+  </body>
 </html>
